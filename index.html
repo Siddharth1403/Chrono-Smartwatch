@@ -1,0 +1,3240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoPulse - Innovative Smartwatch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #60a5fa;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            position: relative;
+            padding: 3rem 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInFromLeft 1s ease-out;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            max-width: 90%;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #60a5fa;
+            border: 2px solid #3b82f6;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        /* Watch Image with Animation */
+        .watch-container {
+            position: relative;
+            width: 380px;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .watch-image {
+            width: 100%;
+            height: auto;
+            animation: float 6s ease-in-out infinite;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .watch-backglow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: 1;
+        }
+        
+        /* Features Icons */
+        .features {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeIn 2.5s ease-out;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(30, 41, 59, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            color: #60a5fa;
+            font-size: 1.2rem;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 1rem;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+            
+            .hero p {
+                max-width: 100%;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .features {
+                justify-content: center;
+            }
+            
+            .watch-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .watch-backglow {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .watch-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .watch-backglow {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <i class="fas fa-clock"></i>
+                <span>ChronoPulse</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Features</a>
+                <a href="#">Design</a>
+                <a href="#">Pricing</a>
+                <a href="#">Reviews</a>
+            </div>
+        </nav>
+        
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Experience Time Like Never Before</h1>
+                <p>ChronoPulse is the next generation smartwatch with advanced health monitoring, seamless connectivity, and a stunning always-on display that adapts to your lifestyle.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">Pre-order Now</a>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <i class="fas fa-heart-pulse feature-icon"></i>
+                        <span>Health Monitor</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <span>7-Day Battery</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-droplet feature-icon"></i>
+                        <span>Water Resistant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="watch-backglow"></div>
+                <div class="watch-container">
+                    <!-- SVG Watch Image -->
+                    <svg class="watch-image" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="watchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#3b82f6" />
+                                <stop offset="100%" stop-color="#60a5fa" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Watch Case -->
+                        <ellipse cx="250" cy="250" rx="180" ry="220" fill="url(#watchGradient)" filter="url(#glow)" />
+                        <ellipse cx="250" cy="250" rx="170" ry="210" fill="#1e293b" />
+                        
+                        <!-- Watch Screen -->
+                        <ellipse cx="250" cy="250" rx="160" ry="200" fill="#0f172a" />
+                        
+                        <!-- Watch Face -->
+                        <circle cx="250" cy="250" r="140" fill="#1e293b" stroke="#60a5fa" stroke-width="2" />
+                        
+                        <!-- Hour Marks -->
+                        <g stroke="#60a5fa" stroke-width="2">
+                            <line x1="250" y1="120" x2="250" y2="130" />
+                            <line x1="250" y1="370" x2="250" y2="380" />
+                            <line x1="120" y1="250" x2="130" y2="250" />
+                            <line x1="370" y1="250" x2="380" y2="250" />
+                        </g>
+                        
+                        <!-- Hands -->
+                        <g stroke-linecap="round">
+                            <!-- Hour Hand -->
+                            <line x1="250" y1="250" x2="250" y2="180" stroke="#3b82f6" stroke-width="6" />
+                            <!-- Minute Hand -->
+                            <line x1="250" y1="250" x2="290" y2="220" stroke="#60a5fa" stroke-width="4" />
+                            <!-- Second Hand -->
+                            <line x1="250" y1="250" x2="250" y2="130" stroke="#f87171" stroke-width="2" />
+                            <!-- Center Circle -->
+                            <circle cx="250" cy="250" r="8" fill="#f87171" />
+                        </g>
+                        
+                        <!-- Watch Band -->
+                        <path d="M180 250 C100 230, 100 270, 180 250 L150 50 C130 30, 130 470, 150 450 L180 250" fill="#334155" />
+                        <path d="M320 250 C400 230, 400 270, 320 250 L350 50 C370 30, 370 470, 350 450 L320 250" fill="#334155" />
+                    </svg>
+                </div>
+            </div>
+        </section>
+		</section> <!-- Close hero section -->
+
+<!-- Problem & Solution Section -->
+<section class="problem-solution">
+    <div class="container">
+        <h2>From Frustration to Innovation</h2>
+        <p class="section-subtitle">Traditional smartwatches fall short. ChronoPulse redefines what's possible.</p>
+        
+        <div class="comparison-section">
+            <div class="problem-side">
+                <h3>The Problem</h3>
+                <div class="problem-list">
+                    <div class="problem-item">
+                        <div class="problem-icon">
+                            <i class="fas fa-battery-quarter"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h4>Short Battery Life</h4>
+                            <p>Daily charging interrupts your routine and limits usage.</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="problem-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h4>Not Waterproof</h4>
+                            <p>Worried about rain, sweat, or accidental water exposure.</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="problem-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="problem-content">
+                            <h4>Limited Features</h4>
+                            <p>Basic functionality that doesn't adapt to your lifestyle.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="solution-side">
+                <h3>The Solution</h3>
+                <div class="solution-list">
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="solution-content">
+                            <h4>7-Day Battery</h4>
+                            <p>Week-long battery life keeps you connected without interruption.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-swimmer"></i>
+                        </div>
+                        <div class="solution-content">
+                            <h4>Water Resistant</h4>
+                            <p>Swim, shower, and sweat without worry with IP68 rating.</p>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div class="solution-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="solution-content">
+                            <h4>Adaptive Intelligence</h4>
+                            <p>AI-powered features that learn and adapt to your routine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transformation-animation">
+            <div class="animation-container">
+                <div class="before-state">
+                    <div class="watch-problem">
+                        <div class="low-battery"></div>
+                    </div>
+                    <p>Before: Limited functionality</p>
+                </div>
+                
+                <div class="animation-transition">
+                    <div class="transition-arrow"></div>
+                    <button class="trigger-animation">See Transformation</button>
+                </div>
+                
+                <div class="after-state">
+                    <div class="watch-solution">
+                        <div class="full-features"></div>
+                    </div>
+                    <p>After: ChronoPulse experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Problem & Solution Section Styles */
+    .problem-solution {
+        padding: 5rem 0;
+        background: linear-gradient(to bottom, #0f172a, #1e293b);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .problem-solution h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #60a5fa, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #cbd5e1;
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .comparison-section {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+    
+    .problem-side, .solution-side {
+        flex: 1;
+        padding: 2rem;
+        border-radius: 15px;
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+    }
+    
+    .problem-side {
+        border-left: 4px solid #ef4444;
+    }
+    
+    .solution-side {
+        border-left: 4px solid #10b981;
+    }
+    
+    .problem-side h3, .solution-side h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .problem-side h3:before {
+        content: "✗";
+        color: #ef4444;
+        font-weight: bold;
+    }
+    
+    .solution-side h3:before {
+        content: "✓";
+        color: #10b981;
+        font-weight: bold;
+    }
+    
+    .problem-item, .solution-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        border-radius: 10px;
+        transition: transform 0.3s, background 0.3s;
+    }
+    
+    .problem-item:hover, .solution-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .problem-icon, .solution-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .problem-icon {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+    }
+    
+    .solution-icon {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+    }
+    
+    .problem-content h4, .solution-content h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .problem-content p, .solution-content p {
+        color: #cbd5e1;
+        line-height: 1.5;
+    }
+    
+    /* Transformation Animation */
+    .transformation-animation {
+        margin-top: 4rem;
+    }
+    
+    .animation-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .before-state, .after-state {
+        text-align: center;
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .watch-problem, .watch-solution {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        background: #1e293b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .low-battery, .full-features {
+        width: 80%;
+        height: 80%;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .low-battery {
+        background: conic-gradient(#ef4444 25%, #1e293b 0%);
+    }
+    
+    .low-battery:before {
+        content: "25%";
+        position: absolute;
+        color: #ef4444;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .full-features {
+        background: conic-gradient(#10b981 100%, #1e293b 0%);
+    }
+    
+    .full-features:before {
+        content: "100%";
+        position: absolute;
+        color: #10b981;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .animation-transition {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .transition-arrow {
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(to right, #ef4444, #10b981);
+        position: relative;
+    }
+    
+    .transition-arrow:after {
+        content: "";
+        position: absolute;
+        right: -10px;
+        top: -8px;
+        border-left: 10px solid #10b981;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+    }
+    
+    .trigger-animation {
+        padding: 0.8rem 1.5rem;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+    
+    .trigger-animation:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    }
+    
+    /* Animation Keyframes */
+    @keyframes pulseProblem {
+        0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    
+    @keyframes pulseSolution {
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 900px) {
+        .comparison-section {
+            flex-direction: column;
+        }
+        
+        .animation-container {
+            flex-direction: column;
+        }
+        
+        .transition-arrow {
+            width: 4px;
+            height: 80px;
+        }
+        
+        .transition-arrow:after {
+            right: -8px;
+            top: auto;
+            bottom: -10px;
+            border-left: 10px solid transparent;
+            border-top: 10px solid #10b981;
+            border-right: 10px solid transparent;
+        }
+    }
+</style>
+
+<script>
+    // Animation for the problem-solution section
+    document.addEventListener('DOMContentLoaded', function() {
+        const problemItems = document.querySelectorAll('.problem-item');
+        const solutionItems = document.querySelectorAll('.solution-item');
+        const triggerBtn = document.querySelector('.trigger-animation');
+        const watchProblem = document.querySelector('.watch-problem');
+        const watchSolution = document.querySelector('.watch-solution');
+        
+        // Animate problem items on scroll
+        problemItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(-20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'opacity 0.5s, transform 0.5s';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, 300 + (index * 200));
+        });
+        
+        // Animate solution items on scroll
+        solutionItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateX(20px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'opacity 0.5s, transform 0.5s';
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+            }, 600 + (index * 200));
+        });
+        
+        // Transformation animation
+        triggerBtn.addEventListener('click', function() {
+            // Add animation to problem watch
+            watchProblem.style.animation = 'pulseProblem 2s infinite';
+            
+            // Add animation to solution watch after a delay
+            setTimeout(() => {
+                watchSolution.style.animation = 'pulseSolution 2s infinite';
+            }, 1000);
+            
+            // Change button text
+            this.textContent = 'Transformation Activated!';
+            this.style.background = 'linear-gradient(to right, #10b981, #34d399)';
+            
+            // Reset after 5 seconds
+            setTimeout(() => {
+                watchProblem.style.animation = '';
+                watchSolution.style.animation = '';
+                this.textContent = 'See Transformation';
+                this.style.background = 'linear-gradient(to right, #3b82f6, #60a5fa)';
+            }, 5000);
+        });
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe sections for animation
+        document.querySelectorAll('.problem-item, .solution-item').forEach(item => {
+            observer.observe(item);
+        });
+    });
+</script>
+</section> <!-- Close problem-solution section -->
+
+<!-- Key Features Section -->
+<section class="key-features">
+    <div class="container">
+        <h2>Powerful Features, Unmatched Performance</h2>
+        <p class="section-subtitle">Designed for those who demand more from their technology</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                </div>
+                <h3>Advanced Health Monitoring</h3>
+                <p>Track heart rate, blood oxygen, stress levels, and sleep quality with medical-grade precision.</p>
+                <div class="feature-animation">
+                    <div class="heart-rate">
+                        <div class="heart-line"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                </div>
+                <h3>7-Day Battery Life</h3>
+                <p>Intelligent power management provides up to 7 days of use on a single charge.</p>
+                <div class="feature-animation">
+                    <div class="battery-level">
+                        <div class="battery-capacity"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-droplet"></i>
+                    </div>
+                </div>
+                <h3>Water Resistant</h3>
+                <p>IP68 rating means you can swim, shower, and sweat without ever taking it off.</p>
+                <div class="feature-animation">
+                    <div class="water-resistance">
+                        <div class="water-droplet"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-map"></i>
+                    </div>
+                </div>
+                <h3>Built-in GPS</h3>
+                <p>Accurate GPS tracking for runs, hikes, and cycles without needing your phone.</p>
+                <div class="feature-animation">
+                    <div class="gps-tracker">
+                        <div class="satellite-dish"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+                <h3>Smart Notifications</h3>
+                <p>Get calls, texts, app alerts, and calendar reminders directly on your wrist.</p>
+                <div class="feature-animation">
+                    <div class="notifications">
+                        <div class="notification-bell"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <div class="icon-circle">
+                        <i class="fas fa-running"></i>
+                    </div>
+                </div>
+                <h3>100+ Workout Modes</h3>
+                <p>From running to swimming to yoga, track all your activities with precision.</p>
+                <div class="feature-animation">
+                    <div class="workout-modes">
+                        <div class="running-figure"></div>
+                    </div>
+                </div>
+                <button class="feature-btn">Learn More</button>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number" data-target="99">0</div>
+                <div class="stat-label">Accuracy Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label">Battery Cycles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">Meters Waterproof</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="1000000">0</div>
+                <div class="stat-label">Happy Users</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Key Features Section Styles */
+    .key-features {
+        padding: 5rem 0;
+        background: linear-gradient(to bottom, #1e293b, #0f172a);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .key-features h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #60a5fa, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .feature-card {
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .feature-card:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+    }
+    
+    .feature-card:hover:before {
+        transform: scaleX(1);
+    }
+    
+    .feature-icon {
+        margin-bottom: 1.5rem;
+    }
+    
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        font-size: 2rem;
+        color: white;
+        transition: transform 0.3s;
+    }
+    
+    .feature-card:hover .icon-circle {
+        transform: rotate(15deg) scale(1.1);
+    }
+    
+    .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #f8fafc;
+    }
+    
+    .feature-card p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .feature-animation {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Heart Rate Animation */
+    .heart-rate {
+        width: 150px;
+        height: 80px;
+        position: relative;
+    }
+    
+    .heart-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #ef4444;
+        transform: translateY(-50%);
+        overflow: hidden;
+    }
+    
+    .heart-line:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.8), transparent);
+        animation: heartBeat 1.5s infinite;
+    }
+    
+    @keyframes heartBeat {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
+    /* Battery Animation */
+    .battery-level {
+        width: 100px;
+        height: 50px;
+        border: 3px solid #cbd5e1;
+        border-radius: 10px;
+        position: relative;
+    }
+    
+    .battery-level:before {
+        content: "";
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 20px;
+        background: #cbd5e1;
+        border-radius: 0 5px 5px 0;
+    }
+    
+    .battery-capacity {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        bottom: 5px;
+        width: 80%;
+        background: linear-gradient(to right, #10b981, #34d399);
+        border-radius: 5px;
+        animation: batteryCharge 3s infinite alternate;
+    }
+    
+    @keyframes batteryCharge {
+        0% { width: 10%; }
+        100% { width: 80%; }
+    }
+    
+    /* Water Resistance Animation */
+    .water-resistance {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .water-droplet {
+        width: 40px;
+        height: 40px;
+        background: #60a5fa;
+        border-radius: 50% 0 50% 50%;
+        transform: rotate(45deg);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        animation: waterDrip 2s infinite;
+        box-shadow: 0 0 15px #60a5fa;
+    }
+    
+    @keyframes waterDrip {
+        0%, 100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+        50% { transform: translate(-50%, -30%) rotate(45deg) scale(0.9); }
+    }
+    
+    /* GPS Animation */
+    .gps-tracker {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .satellite-dish {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 3px solid #60a5fa;
+        border-radius: 50%;
+    }
+    
+    .satellite-dish:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid #60a5fa;
+        border-radius: 50%;
+        animation: gpsPulse 2s infinite;
+    }
+    
+    @keyframes gpsPulse {
+        0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+    }
+    
+    /* Notifications Animation */
+    .notifications {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .notification-bell {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f59e0b;
+        border-radius: 50% 50% 0 0;
+    }
+    
+    .notification-bell:before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 15px;
+        background: #f59e0b;
+    }
+    
+    .notification-bell:after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 15px;
+        height: 10px;
+        background: #f59e0b;
+        border-radius: 50%;
+        animation: bellRing 0.5s infinite alternate;
+    }
+    
+    @keyframes bellRing {
+        0% { transform: translateX(-50%) rotate(15deg); }
+        100% { transform: translateX(-50%) rotate(-15deg); }
+    }
+    
+    /* Workout Modes Animation */
+    .workout-modes {
+        width: 100px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .running-figure {
+        width: 40px;
+        height: 60px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .running-figure:before, .running-figure:after {
+        content: "";
+        position: absolute;
+        background: #60a5fa;
+        border-radius: 50%;
+    }
+    
+    .running-figure:before {
+        width: 15px;
+        height: 15px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .running-figure:after {
+        width: 10px;
+        height: 10px;
+        bottom: 0;
+        left: 30%;
+        animation: runLegs 0.5s infinite alternate;
+    }
+    
+    @keyframes runLegs {
+        0% { left: 30%; }
+        100% { left: 60%; }
+    }
+    
+    .feature-btn {
+        padding: 0.6rem 1.2rem;
+        background: transparent;
+        color: #60a5fa;
+        border: 2px solid #3b82f6;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .feature-btn:hover {
+        background: rgba(59, 130, 246, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    /* Stats Section */
+    .stats-section {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-top: 4rem;
+        gap: 2rem;
+    }
+    
+    .stat-item {
+        text-align: center;
+        flex: 1;
+        min-width: 150px;
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #60a5fa;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        color: #cbd5e1;
+        font-size: 1.1rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .stats-section {
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            min-width: 100%;
+        }
+    }
+</style>
+
+<script>
+    // Animation for the key features section
+    document.addEventListener('DOMContentLoaded', function() {
+        // Counter animation for stats
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate stats when they come into view
+                    if (entry.target.classList.contains('stat-number')) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        animateValue(entry.target, 0, target, 2000);
+                    }
+                    
+                    // Animate feature cards when they come into view
+                    if (entry.target.classList.contains('feature-card')) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        // Observe all feature cards and stats
+        document.querySelectorAll('.feature-card, .stat-number').forEach(item => {
+            if (item.classList.contains('feature-card')) {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 0.5s, transform 0.5s';
+            }
+            observer.observe(item);
+        });
+        
+        // Hover effects for feature buttons
+        const featureBtns = document.querySelectorAll('.feature-btn');
+        featureBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(to right, #3b82f6, #60a5fa)';
+                this.style.color = 'white';
+                this.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.4)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.background = 'transparent';
+                this.style.color = '#60a5fa';
+                this.style.boxShadow = 'none';
+            });
+        });
+    });
+</script>
+</section> <!-- Close key-features section -->
+
+<!-- How It Works Section -->
+<section class="how-it-works">
+    <div class="container">
+        <h2>How ChronoPulse Works</h2>
+        <p class="section-subtitle">Get started in just three simple steps and transform your daily routine</p>
+        
+        <div class="process-timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Unbox & Power On</h3>
+                    <p>Receive your ChronoPulse watch, unbox the premium packaging, and press the side button to power it on.</p>
+                    <div class="step-animation">
+                        <div class="unboxing-demo">
+                            <div class="package"></div>
+                            <div class="watch-emerge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Connect to App</h3>
+                    <p>Download the ChronoPulse app from your app store, pair via Bluetooth, and customize your settings.</p>
+                    <div class="step-animation">
+                        <div class="connection-demo">
+                            <div class="phone"></div>
+                            <div class="watch-connected"></div>
+                            <div class="connection-waves"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Track & Optimize</h3>
+                    <p>Start tracking your activities, health metrics, and receive personalized insights to optimize your lifestyle.</p>
+                    <div class="step-animation">
+                        <div class="tracking-demo">
+                            <div class="activity-graph"></div>
+                            <div class="data-points"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-features">
+            <div class="process-feature">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h4>Automatic Syncing</h4>
+                <p>Your data syncs seamlessly across all your devices in real-time</p>
+            </div>
+            
+            <div class="process-feature">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h4>Smart AI Coach</h4>
+                <p>Get personalized recommendations based on your activity patterns</p>
+            </div>
+            
+            <div class="process-feature">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Privacy First</h4>
+                <p>Your health data is encrypted and never shared without your permission</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* How It Works Section Styles */
+    .how-it-works {
+        padding: 5rem 0;
+        background: linear-gradient(to bottom, #0f172a, #1e293b);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .how-it-works h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #60a5fa, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Process Timeline */
+    .process-timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 4rem auto;
+        padding: 2rem 0;
+    }
+    
+    .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+    
+    .process-step {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .process-step:nth-child(odd) {
+        flex-direction: row;
+    }
+    
+    .process-step:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    
+    .step-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        z-index: 3;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+        background: rgba(30, 41, 59, 0.8);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 0 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .process-step:hover .step-content {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .step-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #60a5fa;
+        margin-bottom: 1rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #f8fafc;
+    }
+    
+    .step-content p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .step-animation {
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    
+    /* Step 1 Animation - Unboxing */
+    .unboxing-demo {
+        width: 200px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .package {
+        width: 80px;
+        height: 60px;
+        background: #374151;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .package:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 15px;
+        background: #60a5fa;
+    }
+    
+    .watch-emerge {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        animation: emerge 3s infinite;
+    }
+    
+    @keyframes emerge {
+        0%, 30% { 
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        40%, 70% { 
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        80%, 100% { 
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+    }
+    
+    /* Step 2 Animation - Connection */
+    .connection-demo {
+        width: 200px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .phone {
+        width: 40px;
+        height: 70px;
+        background: #1f2937;
+        border-radius: 5px;
+        position: absolute;
+        left: 30%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .phone:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        background: #0f172a;
+        border-radius: 3px;
+    }
+    
+    .watch-connected {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        border-radius: 50%;
+        position: absolute;
+        right: 30%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .connection-waves {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .connection-waves:before,
+    .connection-waves:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #60a5fa;
+        border-radius: 50%;
+        animation: connect 2s infinite;
+    }
+    
+    .connection-waves:after {
+        animation-delay: 0.5s;
+    }
+    
+    @keyframes connect {
+        0% {
+            transform: scale(0.5);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    
+    /* Step 3 Animation - Tracking */
+    .tracking-demo {
+        width: 200px;
+        height: 100px;
+        position: relative;
+    }
+    
+    .activity-graph {
+        width: 150px;
+        height: 60px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .activity-graph:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80%;
+        background: linear-gradient(to top, #10b981, #34d399);
+        clip-path: polygon(0% 100%, 10% 70%, 30% 90%, 50% 40%, 70% 60%, 90% 30%, 100% 50%, 100% 100%);
+        animation: graphGrow 3s infinite;
+    }
+    
+    @keyframes graphGrow {
+        0% { height: 0%; }
+        100% { height: 80%; }
+    }
+    
+    .data-points {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .data-points:before {
+        content: "📊";
+        font-size: 1.5rem;
+        animation: dataPulse 2s infinite;
+    }
+    
+    @keyframes dataPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+    
+    /* Process Features */
+    .process-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 4rem;
+    }
+    
+    .process-feature {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+    
+    .process-feature:hover {
+        transform: translateY(-5px);
+    }
+    
+    .process-feature .feature-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(59, 130, 246, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #60a5fa;
+        margin: 0 auto 1rem;
+    }
+    
+    .process-feature h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        color: #f8fafc;
+    }
+    
+    .process-feature p {
+        color: #cbd5e1;
+        line-height: 1.5;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .process-timeline {
+            max-width: 100%;
+        }
+        
+        .timeline-line {
+            left: 30px;
+        }
+        
+        .process-step {
+            flex-direction: row !important;
+            margin-bottom: 3rem;
+        }
+        
+        .step-content {
+            margin-left: 4rem;
+            margin-right: 0;
+        }
+        
+        .process-step:nth-child(even) .step-content {
+            margin-left: 4rem;
+            margin-right: 0;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .step-content {
+            margin-left: 3rem;
+            padding: 1.5rem;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+        
+        .process-features {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Animation for the How It Works section
+    document.addEventListener('DOMContentLoaded', function() {
+        const processSteps = document.querySelectorAll('.process-step');
+        const timelineLine = document.querySelector('.timeline-line');
+        
+        // Initialize step animations
+        processSteps.forEach(step => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(30px)';
+        });
+        
+        // Intersection Observer for step animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate the timeline line
+                    timelineLine.style.height = '100%';
+                    timelineLine.style.transition = 'height 2s ease-in-out';
+                    
+                    // Animate each step with delay
+                    processSteps.forEach((step, index) => {
+                        setTimeout(() => {
+                            step.style.opacity = '1';
+                            step.style.transform = 'translateY(0)';
+                            step.style.transition = 'opacity 0.8s, transform 0.8s';
+                        }, index * 400);
+                    });
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        // Observe the timeline container
+        observer.observe(document.querySelector('.process-timeline'));
+        
+        // Hover effects for process features
+        const processFeatures = document.querySelectorAll('.process-feature');
+        processFeatures.forEach(feature => {
+            feature.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.feature-icon');
+                icon.style.background = 'linear-gradient(to right, #3b82f6, #60a5fa)';
+                icon.style.color = 'white';
+                icon.style.transform = 'rotate(15deg) scale(1.1)';
+                icon.style.transition = 'all 0.3s';
+            });
+            
+            feature.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.feature-icon');
+                icon.style.background = 'rgba(59, 130, 246, 0.2)';
+                icon.style.color = '#60a5fa';
+                icon.style.transform = 'rotate(0) scale(1)';
+            });
+        });
+        
+        // Click to expand step details
+        processSteps.forEach(step => {
+            step.addEventListener('click', function() {
+                const content = this.querySelector('.step-content');
+                const allContents = document.querySelectorAll('.step-content');
+                
+                // Collapse all other steps
+                allContents.forEach(item => {
+                    if (item !== content) {
+                        item.classList.remove('expanded');
+                    }
+                });
+                
+                // Toggle current step
+                content.classList.toggle('expanded');
+            });
+        });
+        
+        // Add CSS for expanded state
+        const style = document.createElement('style');
+        style.textContent = `
+            .step-content.expanded {
+                transform: scale(1.05) !important;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3) !important;
+                z-index: 10;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
+<!-- Testimonials & Social Proof Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2>Trusted by Thousands Worldwide</h2>
+        <p class="section-subtitle">See what our customers are saying about their ChronoPulse experience</p>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Sarah Johnson">
+                    </div>
+                    <div class="user-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>Fitness Enthusiast</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <p>"The ChronoPulse has completely transformed my fitness routine. The heart rate monitoring is incredibly accurate, and the 7-day battery life means I never miss a workout tracking session."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Michael Chen">
+                    </div>
+                    <div class="user-info">
+                        <h4>Michael Chen</h4>
+                        <p>Tech Professional</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <p>"As someone who tests tech products regularly, I'm impressed with ChronoPulse's seamless integration with my devices. The notifications are timely, and the interface is intuitive."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Emma Rodriguez">
+                    </div>
+                    <div class="user-info">
+                        <h4>Emma Rodriguez</h4>
+                        <p>Busy Parent</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-content">
+                    <p>"The sleep tracking feature has been a game-changer for managing my stress levels. I love how it gently wakes me up with vibrations instead of a loud alarm."</p>
+                </div>
+                <div class="testimonial-footer">
+                    <span class="verified-badge"><i class="fas fa-check-circle"></i> Verified Purchase</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-proof">
+            <div class="proof-item">
+                <div class="proof-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="proof-content">
+                    <h3>Tech Innovation Award 2023</h3>
+                    <p>Recognized for outstanding design and functionality</p>
+                </div>
+            </div>
+            
+            <div class="proof-item">
+                <div class="proof-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="proof-content">
+                    <h3>4.8/5 Average Rating</h3>
+                    <p>Based on 10,000+ customer reviews</p>
+                </div>
+            </div>
+            
+            <div class="proof-item">
+                <div class="proof-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="proof-content">
+                    <h3>500,000+ Happy Users</h3>
+                    <p>Join our growing community worldwide</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="press-logos">
+            <h3>As Featured In</h3>
+            <div class="logos-container">
+                <div class="logo-item">TechToday</div>
+                <div class="logo-item">GadgetReview</div>
+                <div class="logo-item">FutureTech</div>
+                <div class="logo-item">WearableWeekly</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Testimonials & Social Proof Section Styles */
+    .testimonials-section {
+        padding: 5rem 0;
+        background: linear-gradient(to bottom, #1e293b, #0f172a);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .testimonials-section h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #60a5fa, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .testimonials-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .testimonial-card {
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 15px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .testimonial-card:before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 5rem;
+        color: rgba(59, 130, 246, 0.2);
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+    
+    .testimonial-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 1rem;
+        border: 3px solid #3b82f6;
+    }
+    
+    .user-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .user-info h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+        color: #f8fafc;
+    }
+    
+    .user-info p {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .rating {
+        color: #fbbf24;
+    }
+    
+    .testimonial-content {
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-content p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        font-style: italic;
+    }
+    
+    .testimonial-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1rem;
+    }
+    
+    .verified-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #10b981;
+        font-size: 0.9rem;
+    }
+    
+    /* Social Proof Section */
+    .social-proof {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 4rem 0;
+        padding: 2rem;
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 15px;
+    }
+    
+    .proof-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .proof-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+    }
+    
+    .proof-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        color: #f8fafc;
+    }
+    
+    .proof-content p {
+        color: #cbd5e1;
+        font-size: 0.9rem;
+    }
+    
+    /* Press Logos */
+    .press-logos {
+        text-align: center;
+        margin-top: 3rem;
+    }
+    
+    .press-logos h3 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #cbd5e1;
+    }
+    
+    .logos-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    
+    .logo-item {
+        padding: 1rem 2rem;
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 10px;
+        color: #cbd5e1;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo-item:hover {
+        background: rgba(59, 130, 246, 0.2);
+        color: #60a5fa;
+        transform: translateY(-5px);
+    }
+    
+    /* Animation for testimonials */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .testimonial-card {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .testimonial-card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    
+    .testimonial-card:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .testimonials-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .social-proof {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .proof-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .logos-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-item {
+            width: 80%;
+            max-width: 200px;
+        }
+    }
+</style>
+
+<script>
+    // Testimonials animation script
+    document.addEventListener('DOMContentLoaded', function() {
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        
+        // Intersection Observer for testimonial animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        // Initialize testimonial cards with hidden state
+        testimonialCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s, transform 0.8s';
+            observer.observe(card);
+        });
+        
+        // Add hover effect to proof items
+        const proofItems = document.querySelectorAll('.proof-item');
+        proofItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.proof-icon');
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.transition = 'transform 0.3s';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.proof-icon');
+                icon.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+        
+        // Auto-rotate testimonials (optional feature)
+        let currentTestimonial = 0;
+        const testimonialContainer = document.querySelector('.testimonials-container');
+        
+        function rotateTestimonials() {
+            if (testimonialContainer) {
+                testimonialContainer.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+                currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
+            }
+        }
+        
+        // Uncomment the line below to enable auto-rotation (every 5 seconds)
+        // setInterval(rotateTestimonials, 5000);
+    });
+</script>
+<!-- Final Call-to-Action Section -->
+<section class="final-cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Life?</h2>
+            <p class="cta-subtitle">Join 500,000+ users who have already upgraded to ChronoPulse</p>
+            
+            <div class="pricing-highlight">
+                <div class="price-tag">
+                    <span class="old-price">$299</span>
+                    <span class="new-price">$249</span>
+                    <span class="discount-badge">Save $50</span>
+                </div>
+                <p class="limited-offer">Limited Time Offer - Free Worldwide Shipping</p>
+            </div>
+            
+            <div class="cta-features">
+                <div class="feature-guarantee">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>30-Day Money Back Guarantee</span>
+                </div>
+                <div class="feature-guarantee">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Free Express Shipping</span>
+                </div>
+                <div class="feature-guarantee">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Customer Support</span>
+                </div>
+            </div>
+            
+            <div class="cta-buttons-final">
+                <a href="#" class="btn btn-primary-large">
+                    <i class="fas fa-shopping-cart"></i>
+                    Order Now - $249
+                </a>
+                <a href="#" class="btn btn-secondary-large">
+                    <i class="fas fa-play-circle"></i>
+                    Watch Demo Video
+                </a>
+            </div>
+            
+            <div class="security-notice">
+                <i class="fas fa-lock"></i>
+                <span>Your information is 100% secure. We never share your data.</span>
+            </div>
+            
+            <div class="remaining-stock">
+                <div class="stock-bar">
+                    <div class="stock-progress" style="width: 75%"></div>
+                </div>
+                <p class="stock-text">Only 247 units left at this price</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Final CTA Section Styles */
+    .final-cta {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .final-cta:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.1"><polygon fill="white" points="100,100 200,50 300,100 400,50 500,100 600,50 700,100 800,50 900,100 1000,50 1000,150 900,200 800,150 700,200 600,150 500,200 400,150 300,200 200,150 100,200 0,150 0,50"/></svg>');
+        animation: floatBackground 20s linear infinite;
+    }
+    
+    @keyframes floatBackground {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-100px); }
+    }
+    
+    .cta-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .final-cta h2 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: white;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .cta-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 2rem;
+    }
+    
+    .pricing-highlight {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 2rem 0;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .price-tag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .old-price {
+        font-size: 2rem;
+        color: rgba(255,255,255,0.6);
+        text-decoration: line-through;
+    }
+    
+    .new-price {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .discount-badge {
+        background: #ef4444;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+    
+    .limited-offer {
+        color: #fbbf24;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    .cta-features {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+    
+    .feature-guarantee {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-weight: 500;
+    }
+    
+    .feature-guarantee i {
+        color: #fbbf24;
+    }
+    
+    .cta-buttons-final {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+    
+    .btn-primary-large {
+        padding: 1.2rem 2.5rem;
+        background: linear-gradient(to right, #f59e0b, #fbbf24);
+        color: #1e293b;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+        box-shadow: 0 5px 20px rgba(245, 158, 11, 0.4);
+    }
+    
+    .btn-primary-large:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6);
+    }
+    
+    .btn-secondary-large {
+        padding: 1.2rem 2.5rem;
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s;
+    }
+    
+    .btn-secondary-large:hover {
+        background: rgba(255,255,255,0.1);
+        transform: translateY(-3px);
+    }
+    
+    .security-notice {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+        margin: 1rem 0;
+    }
+    
+    .remaining-stock {
+        margin-top: 2rem;
+    }
+    
+    .stock-bar {
+        width: 100%;
+        height: 10px;
+        background: rgba(255,255,255,0.2);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stock-progress {
+        height: 100%;
+        background: linear-gradient(to right, #ef4444, #f59e0b);
+        border-radius: 5px;
+        transition: width 2s ease-in-out;
+    }
+    
+    .stock-text {
+        color: rgba(255,255,255,0.8);
+        font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .final-cta h2 {
+            font-size: 2.2rem;
+        }
+        
+        .cta-buttons-final {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn-primary-large,
+        .btn-secondary-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .price-tag {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .cta-features {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+</style>
+
+<script>
+    // Final CTA animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const stockProgress = document.querySelector('.stock-progress');
+        const ctaSection = document.querySelector('.final-cta');
+        
+        // Animate stock progress bar
+        setTimeout(() => {
+            stockProgress.style.width = '75%';
+        }, 500);
+        
+        // Countdown timer effect (optional)
+        let seconds = 1800; // 30 minutes
+        const timerElement = document.createElement('div');
+        timerElement.className = 'countdown-timer';
+        timerElement.innerHTML = `
+            <div style="color: white; margin: 1rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                <strong>Special offer ends in: <span id="countdown">30:00</span></strong>
+            </div>
+        `;
+        
+        // Uncomment to add countdown timer
+        // ctaSection.querySelector('.cta-content').appendChild(timerElement);
+        
+        function updateTimer() {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            document.getElementById('countdown').textContent = 
+                `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            
+            if (seconds > 0) {
+                seconds--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+        
+        // Uncomment to start countdown
+        // updateTimer();
+        
+        // Add scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        // Observe CTA elements
+        const ctaElements = document.querySelectorAll('.final-cta > *');
+        ctaElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s, transform 0.8s';
+            observer.observe(el);
+        });
+    });
+</script>
+<!-- Footer Section -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-clock"></i>
+                    <span>ChronoPulse</span>
+                </div>
+                <p class="footer-description">Redefining time with innovative smartwatch technology that adapts to your lifestyle.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Reviews</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Warranty</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new features and offers.</p>
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 ChronoPulse. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    /* Footer Styles */
+    .site-footer {
+        background: linear-gradient(to bottom, #0f172a, #0a0f1a);
+        color: #cbd5e1;
+        padding: 4rem 0 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .site-footer:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, #3b82f6, transparent);
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .footer-section h3 {
+        color: #f8fafc;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .footer-section h3:after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 30px;
+        height: 2px;
+        background: #3b82f6;
+        transition: width 0.3s;
+    }
+    
+    .footer-section:hover h3:after {
+        width: 100%;
+    }
+    
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #60a5fa;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-description {
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        max-width: 250px;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(30, 41, 59, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .social-link:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        opacity: 0;
+        transition: opacity 0.3s;
+        border-radius: 50%;
+    }
+    
+    .social-link i {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.3s;
+    }
+    
+    .social-link:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    }
+    
+    .social-link:hover:before {
+        opacity: 1;
+    }
+    
+    .social-link:hover i {
+        color: white;
+        transform: scale(1.1);
+    }
+    
+    .footer-links {
+        list-style: none;
+    }
+    
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.3s;
+        position: relative;
+        padding: 0.2rem 0;
+    }
+    
+    .footer-links a:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 1px;
+        background: #60a5fa;
+        transition: all 0.3s;
+        transform: translateX(-50%);
+    }
+    
+    .footer-links a:hover {
+        color: #60a5fa;
+    }
+    
+    .footer-links a:hover:before {
+        width: 100%;
+    }
+    
+    .newsletter-form {
+        margin-top: 1rem;
+    }
+    
+    .input-group {
+        display: flex;
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 50px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+    }
+    
+    .input-group:focus-within {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    }
+    
+    .input-group input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: 0.8rem 1.2rem;
+        color: #f8fafc;
+        outline: none;
+    }
+    
+    .input-group input::placeholder {
+        color: #94a3b8;
+    }
+    
+    .input-group button {
+        background: linear-gradient(to right, #3b82f6, #60a5fa);
+        border: none;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .input-group button:hover {
+        background: linear-gradient(to right, #2563eb, #3b82f6);
+        transform: scale(1.05);
+    }
+    
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    .footer-bottom-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s;
+        position: relative;
+    }
+    
+    .footer-bottom-links a:before {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #60a5fa;
+        transition: width 0.3s;
+    }
+    
+    .footer-bottom-links a:hover {
+        color: #60a5fa;
+    }
+    
+    .footer-bottom-links a:hover:before {
+        width: 100%;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .footer-section h3:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .social-links {
+            justify-content: center;
+        }
+        
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .footer-bottom-links {
+            justify-content: center;
+        }
+    }
+</style>
+
+<script>
+    // Footer animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const input = this.querySelector('input');
+                const button = this.querySelector('button');
+                
+                // Simple validation
+                if (input.value && input.value.includes('@')) {
+                    // Success animation
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    button.style.background = '#10b981';
+                    input.value = 'Thank you for subscribing!';
+                    input.disabled = true;
+                    
+                    // Reset after 3 seconds
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                        button.style.background = '';
+                        input.value = '';
+                        input.disabled = false;
+                    }, 3000);
+                } else {
+                    // Error animation
+                    input.style.border = '1px solid #ef4444';
+                    setTimeout(() => {
+                        input.style.border = '';
+                    }, 2000);
+                }
+            });
+        }
+        
+        // Animate footer sections on scroll
+        const footerSections = document.querySelectorAll('.footer-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        footerSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(section);
+        });
+    });
+</script>
+    </div>
+
+    <script>
+        // Interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const watch = document.querySelector('.watch-image');
+            const buttons = document.querySelectorAll('.btn');
+            
+            // Add interactive animation to watch on mouse move
+            document.addEventListener('mousemove', function(e) {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                
+                watch.style.transform = `translateY(-15px) rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+            });
+            
+            // Add animation to buttons on hover
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0px)';
+                });
+            });
+            
+            // Animate features on scroll
+            const featureItems = document.querySelectorAll('.feature-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+            
+            featureItems.forEach(item => {
+                item.style.opacity = '0';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
